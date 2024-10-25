@@ -1,0 +1,23 @@
+import sqlite3
+
+def create_table():
+    conn = sqlite3.connect('college.db')  # Connect to the SQLite database
+    cursor = conn.cursor()
+
+    # SQL command to create a table if it doesn't exist
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            password TEXT NOT NULL,
+            email TEXT NOT NULL,
+            dob TEXT NOT NULL,
+            mobile_no TEXT NOT NULL
+        )
+    ''')
+
+    conn.commit()  # Save (commit) the changes
+    conn.close()   # Close the database connection
+
+# Call this function to create the table
+create_table()

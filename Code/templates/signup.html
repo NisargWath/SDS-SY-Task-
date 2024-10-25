@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="en"><head>
+    
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>My College | Signup</title>
+    <link rel="stylesheet" href="../static/index.css">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/nprogress.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="css/custom.min.css" rel="stylesheet">
+    
+    <link href="css/bootstrap.min_1.css" rel="stylesheet">
+    <link href="css/jquery-ui-1.8.13.custom.css" rel="stylesheet">
+    <style>
+        body {
+             background: url(../static/images/college_42b626c32aa4436806a3282d3c6469b5.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .panel-default {
+            opacity: 0.9;
+            margin-top: 30px;
+        }
+
+        .form-group.last {
+            margin-bottom: -20px;
+        }
+
+        .browsehappy {
+            margin: 0.2em 0;
+            background: #ccc;
+            color: #000;
+            padding: 0.2em 0;
+        }
+    </style>
+
+</head>
+
+<body class="login" style="background-image:url(../static/images/college_42b626c32aa4436806a3282d3c6469b5.jpg); background-repeat:no-repeat">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+
+        <div class="login_wrapper">
+            
+            <div class="text-center">
+                <h1><img src="../static/images/logo.png"" alt="COEP"></h1> <h2> COEP Technological University</h2>
+               
+            </div>
+            
+
+
+ 
+        
+   
+
+
+    <div class="container" id="container">
+        <div class="row">
+            <div class="col-md-12 " id="loginBox">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span></span>Login   
+                    </div>
+
+                        <div class="panel-body">
+                            <form id="frmSignup" name="frmSignup" method="post" action="/signup" class="form-horizontal" role="form">
+                                <label for="UserName">Username:</label>
+                                <input type="text" name="UserName" required><br>
+                        
+                                <label for="Password">Password:</label>
+                                <input type="password" name="Password" required><br>
+                        
+                                <label for="emailPrefix">Email Prefix:</label>
+                                <input type="text" name="emailPrefix" required><br>
+                        
+                                <label for="DOB">Date of Birth:</label>
+                                <input type="date" name="DOB" required><br>
+                        
+                                <label for="MobileNo">Mobile No:</label>
+                                <input type="text" name="MobileNo"><br>
+                        
+                                <input type="submit" value="Sign Up">
+                            </form>
+                        </div>
+                    <div class="panel-footer">
+                        <a href="javascript:;" onclick="ShowRegister()">New User</a>
+                        �&nbsp; �&nbsp;
+                        <div class="pull-right">
+                            <a href="javascript:;" onclick="ForgotPassword()">Forgot Password</a>
+                        </div>
+
+                    </div>
+                    
+                     
+                   
+                       <br>                 
+                    
+                       <br>
+                   
+                   
+               </div>
+               </div>
+                </div>
+            </div>
+            <div class="col-lg-12" id="registerBox" style="display: none">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Register</strong>
+                    </div>
+                    <div class="panel-body">
+                        <form id="frmValidate" name="frmValidate" method="post" class="form-horizontal" role="form">
+                            <div id="genMsg1" class="alert alert-danger hide"></div>
+                            <div class="form-group">
+                                <label for="DateOfBirth" id="Reg" class="col-sm-3 control-label">
+                                    Register as <span style="color: red">*</span>
+                                </label>
+                                <div class="highlight ">
+                                    <div class="col-sm-6">
+                                        <select id="student" name="student" class="form-control">
+
+                                            <option value="0">--Select User Type--</option>
+                                            <option value="1">Faculty</option><option value="3">Non-Teaching Staff</option><option value="4">Guest</option><option value="2">Student</option><option value="5">Alumini Student</option><option value="20">System Analyst</option>;
+                                        </select>
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emailPrefix" class="col-sm-3 control-label">
+                                    Email Id <span style="color: red">*</span>
+                                </label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" valsection="validate" name="emailPrefix" id="emailPrefix" placeholder="Enter Your College E-Mail Id" required="">
+                                        <span class="input-group-addon">@coeptech.ac.in</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                             <div class="col-sm-offset-3 col-sm-9">
+                                <h6><small style="color: orangered;">(Enter your correct Date of Birth)</small></h6>
+                            </div>
+                            
+                            <div class="form-group" style="margin-bottom: 0px">
+                                <label for="DateOfBirth" id="DateOfBirth" class="col-sm-3 control-label">
+                                    Date of Birth <span style="color: red">*</span>
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" maxlength="10" id="DOB" name="DOB" placeholder="MM/DD/YYYY" required="">
+                                </div>
+                            </div>
+                           <div class="col-sm-offset-3 col-sm-9">
+                                <h6><small style="color: orangered;">OR (Do Not Enter Gen.Merit No)</small></h6>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0px">
+                                <label for="GMeritNo" class="col-sm-3 control-label">
+                                    Gen.Merit No
+                                </label>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" name="GMeritNo" valsection="validate" required="" maxlength="10" id="GMeritNo" placeholder="General Merit No">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <h6><small style="color: orangered;">OR (Do Not Enter Mobile No.)</small></h6>
+                            </div>
+                            <div class="form-group">
+                                <label for="Mobileno" id="MobilnNo" class="col-sm-3 control-label">
+                                    Mobile No.
+                                </label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" maxlength="13" valdata="num" id="MobileNo" name="MobileNo" placeholder="Your Mobile N0.">
+                                </div>
+                            </div>
+                            <div class="form-group last">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="button" id="btnValidate" onclick="validateSignUp()" name="btnValidate" class="btn btn-success btn-sm">Validate</button>
+                                    <input type="reset" class="btn btn-warning" id="reset" name="Reset" value="Reset">
+                                </div>
+                            </div>
+                        </form>
+                        <br>
+                        <br>
+                        <form id="frmSignup" name="frmSignup" method="post" class="form-horizontal " style="display: none" role="form">
+                            <fieldset>
+                                <legend>Confirm Your Details</legend>
+                                <div class="form-group">
+                                    <label for="studentname" class="col-sm-3 control-label">
+                                        Your Name
+                                    </label>
+                                    <div class="col-sm-9">
+
+                                        <input type="hidden" id="RegCode" value="0" name="RegCode">
+
+                                        <input type="text" id="studentname" disabled="disabled" class="form-control" maxlength="10">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="branch" class="col-sm-3 control-label">
+                                        Your Branch/Course
+                                    </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="branch" class="form-control" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            I agree all your <a href="#">Terms of Services</a>
+                                        </label>
+                                        <div class="span11">
+                                            <button type="button" id="btnSignup" class="btn btn-success">Sign Up</button>
+                                            <input type="button" class="btn btn-warning" id="resend" name="resend" value="Resend Mail" disabled="">
+                                        </div>
+                                        <div class="show" id="Result">
+                                            <h4>
+                                                <label for="RegCode" id="RegCode1" style="font-size: 20px">
+                                                </label>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                        <br>
+                    </div>
+                    <div class="panel-footer">
+                        Have username and password? <a href="javascript:;" onclick="ShowLogin()">Back to Login</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-12" id="ForgotPassword" style="display: none">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>Forgot Password</strong>
+                    </div>
+
+                    <div class="panel-body">
+                        <form id="frmForgotPassword" name="frmForgotPassword" method="post" class="form-horizontal" role="form">
+                            <div id="genMsg2" class="alert alert-danger hide">
+                                <button type="button" class="close" data-dismiss="alert-link" aria-hidden="true">×</button>
+                            </div>
+                            <div class="form-group">
+                                <div class="highlight ">
+                                    <label for="UserType" class="col-sm-3 control-label">
+                                        User Type <span style="color: red">*</span>
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <select id="UserType" name="UserType" class="form-control">
+                                            <option value="0">--Select User Type--</option>
+                                            <option value="1">Faculty</option><option value="3">Non-Teaching Staff</option><option value="4">Guest</option><option value="2">Student</option><option value="5">Alumini Student</option><option value="20">System Analyst</option>;
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="emailPrefix" class="col-sm-3 control-label">
+                                    Email Id <span style="color: red">*</span>
+                                </label>
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" valsection="validate" name="emailPrefix1" id="emailPrefix1" placeholder="Enter Your College E-Mail Id" required="">
+                                        <span class="input-group-addon">@coeptech.ac.in</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0px">
+                                <label for="DateOfBirth1" id="DateOfBirth1" class="col-sm-3 control-label">
+                                    Date of Birth
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" maxlength="10" id="DOB1" name="DOB1" placeholder="MM/DD/YYYY" required="">
+                                </div>
+                                <div class="form-group last">
+                                    <br> <br> <br>
+
+
+
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <button type="button" class="btn btn-success btn-sm" value="ForgotPassword" id="btnForgotPassword" onclick="ForgotPassword()">
+                                            Submit
+                                        </button>
+                                        <input type="reset" class="btn btn-warning" id="reset1" name="Reset" value="Reset">
+
+                                    </div>
+                   
+                                    <br> <br> <br>
+                                </div>
+                        
+                    </div></form>
+
+                    <div class="panel-footer">
+                        <a href="javascript:;" onclick="ShowLogin()">Go to Login</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+            <div class="text-center">
+                <p>© 2024 All Rights Reserved. Privacy and Terms</p>
+                </div>
+            </div>
+
+    
+
+
+</body></html>
