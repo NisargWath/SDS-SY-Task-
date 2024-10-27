@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Upload and Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+label, button {
+    display: block;
+    margin-top: 10px;
+}
+
+input, button {
+    padding: 8px;
+    width: 100%;
+}
+
+#response {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Document and Ask Questions</h2>
+        <form id="upload-form" action="{{ url_for('upload_document') }}" method="POST" enctype="multipart/form-data">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+            <label for="document">Upload Document:</label>
+            <input type="file" name="document" id="document" required>
+            <button type="submit">Upload</button>
+        </form>
+
+        <h2>Ask a Question</h2>
+        <form id="chat-form">
+            <label for="question">Question:</label>
+            <input type="text" id="question" required>
+            <button type="submit">Ask</button>
+        </form>
+
+        <div id="response"></div>
+    </div>
+
+    <script>
+        document.getElementById("upload-form").onsubmit = async function (e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const response = await fetch("{{ url_for('upload_document') }}", {
+                method: "POST",
+                body: formData
+            });
+            const result = await response.json();
+            alert(result.message || result.error);
+        };
+
+        document.getElementById("chat-form").onsubmit = async function (e) {
+            e.preventDefault();
+            const question = document.getElementById("question").value;
+            const username = document.getElementById("username").value;
+            const response = await fetch("{{ url_for('chat') }}", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ username, question })
+            });
+            const result = await response.json();
+            document.getElementById("response").innerHTML = result.response || result.error;
+        };
+    </script>
+</body>
+</html>

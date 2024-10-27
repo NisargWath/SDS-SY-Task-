@@ -5,7 +5,6 @@
     <title>Registered Users</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../static/js/style.css" />
     <style>
         main {
             background-image: url('../static/images/lg1.jpg'); /* Set your background image */
@@ -15,22 +14,89 @@
             color: white; /* Text color to be visible over the background */
         }
 
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: #4a90e2;
+    margin-bottom: 20px;
+}
+
+.upload-section {
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 10px auto;
+}
+
+button {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #357ab7;
+}
+
+.preview {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fafafa;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.result {
+    display: none;
+    margin-top: 20px;
+    text-align: left;
+}
+
+h2 {
+    color: #4a90e2;
+    margin-bottom: 10px;
+}
+
+
     </style>
-        <style>
-            .message {
-        margin-bottom: 10px;
-        padding: 5px 10px;
-        background-color: #2c2d30;
-        color: white; /* Set text color to white */
-        border-radius: 5px;
-        display: inline-block;
-    }
-    
-    .message.self {
-        background-color: #28a745;
-    }
-    
-        </style>
 </head>
 <body>
 
@@ -99,53 +165,38 @@
                 <br>
             </div>
         </nav>
-
         <!-- Main content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-dark">
             <section class="py-lg-8 py-5">
 
                 <div class="container my-lg-8">
 
-                    <div class="row align-items-center">
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
 
-                        <div class="chat-container" id="chat-container">
-                            <!-- Chat logs will be displayed here -->
-                        </div>
-                        
-                        <div id="message-form bg-dark">
-                            <div class="message-wrapper">
-                                <textarea id="message" rows="1" placeholder="Send a message"></textarea>
-                                <button class="send-button" onclick="sendMessage()"><i class="fa fa-paper-plane"></i></button>
-                            </div>
-                           </div>
-                      
+
+
+                            
+
+                                <div class="container">
+                                    <h1>Document Verification</h1>
+                                    <div class="upload-section">
+                                        <label for="upload">Upload Document Image:</label>
+                                        <input type="file" id="upload" accept="image/*" onchange="previewImage(event)">
+                                    </div>
+                                    <div class="preview" id="image-preview">
+                                        <p>No image uploaded</p>
+                                    </div>
+                                    <button onclick="verifyDocument()">Verify Document</button>
+                                    <div class="result" id="verification-result">
+                                        <h2>Verification Details</h2>
+                                        <div id="details"></div>
+                                    </div>
+
+                               
+
+
+
+                        <!-- col -->
+                     
                     </div>
                 </div>
             </section>
@@ -153,47 +204,48 @@
     </div>
 </div>
 
+<<script>
+    function previewImage(event) {
+const preview = document.getElementById('image-preview');
+preview.innerHTML = ''; // Clear any previous content
 
-
-
-</main>
-<script src="../static/js/script.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-function sendMessage() {
-var message = $('#message').val().trim();
-if (message === '') {
-return;
+const file = event.target.files[0];
+if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+}
 }
 
-$.ajax({
-url: '/send_message',
-type: 'POST',
-data: { 'message': message },
-success: function(data) {
-    addMessage('You', message);
-    addMessage('Scholorship', data.message);
-    $('#message').val('');
-},
-error: function(error) {
-    console.log(error);
-}
-});
-}
+async function verifyDocument() {
+const resultSection = document.getElementById('verification-result');
+const details = document.getElementById('details');
 
-function addMessage(sender, message) {
-var chatContainer = $('#chat-container');
-var messageElement = $('<div class="message">');
-messageElement.html('<strong>' + sender + ':</strong> ' + message);
-chatContainer.append(messageElement);
-chatContainer.scrollTop(chatContainer[0].scrollHeight);
-}
+// Simulate API request with loading message
+details.innerHTML = 'Verifying document, please wait...';
+resultSection.style.display = 'block';
 
-function refreshPage() {
-window.location.reload(); // Reloads the current page
-}
+// Example response data
+const simulatedResponse = {
+    name: "John Doe",
+    date: "2023-10-15",
+    documentType: "ID Card"
+};
 
+// Display result
+setTimeout(() => {
+    details.innerHTML = `
+        <p><strong>Name:</strong> ${simulatedResponse.name}</p>
+        <p><strong>Date:</strong> ${simulatedResponse.date}</p>
+        <p><strong>Document Type:</strong> ${simulatedResponse.documentType}</p>
+    `;
+}, 2000);
+}
 
 </script>
 </body>
-</html>
+</htm

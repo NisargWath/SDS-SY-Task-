@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Document Review</title>
+</head>
+<body>
+    <h2>Pending Document Approvals</h2>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Filename</th>
+            <th>Action</th>
+        </tr>
+        {% for doc in documents %}
+        <tr>
+            <td>{{ doc.username }}</td>
+            <td>{{ doc.filename }}</td>
+            <td>
+                <form action="{{ url_for('admin_review') }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="doc_id" value="{{ doc.id }}">
+                    <button type="submit" name="action" value="approve">Approve</button>
+                </form>
+                <form action="{{ url_for('admin_review') }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="doc_id" value="{{ doc.id }}">
+                    <button type="submit" name="action" value="reject">Reject</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

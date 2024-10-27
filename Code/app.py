@@ -50,9 +50,16 @@ def insert_user(username, password, email, dob, mobile_no):
 def index():
     return render_template('signup.html')
 
+
 @app.route('/scholorship')
 def scholorship():
     return render_template('scholorship.html')
+@app.route('/Document')
+def Document():
+    return render_template('Document.html')
+@app.route('/Fees')
+def Fees():
+    return render_template('Fees.html')
 
 @app.route('/signup', methods=['POST'])
 def signup():
@@ -111,8 +118,4 @@ def send_message_cost():
         return jsonify({"message": to_markdown(output_text)})
     
     except Exception as e:
-        print("Error occurred:", e)
-        return jsonify({"error": "An error occurred while processing the request."}), 500
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+        print("Error occurred:",
